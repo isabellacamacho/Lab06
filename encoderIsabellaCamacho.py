@@ -14,18 +14,33 @@ def encoder(password):
     return "".join(encoded_pass)
     # eliminating the spaces to make it a string
 
-program = True
-while program:
-    print("Menu\n-------------\n1. Encode\n2. Decode\n3. Quit\n")
-    option = input("Please enter an option: ")
-    if option == "1":
-        password = input("Please enter password to encode: ")
-        encoded_pass = encoder(password)
-        print("Your password has been encoded and stored!\n")
 
-    elif option == "2":
-        pass
+def decoder(string):
+    decoded_string = []
 
-    else:
-        program = False
-        break
+    for ii in string:
+        decoded_char = str((int(ii) - 3) % 10)
+        decoded_string += decoded_char
+    decoded_string = ''.join(decoded_string)
+    return decoded_string
+
+
+def main():
+    while True:
+        print("Menu\n-------------\n1. Encode\n2. Decode\n3. Quit\n")
+        option = input("Please enter an option: ")
+        if option == "1":
+            password = input("Please enter password to encode: ")
+            encoded_pass = encoder(password)
+            print("Your password has been encoded and stored!\n")
+
+        elif option == "2":
+            print(f"The encoded password is {encoded_pass}, and the original password is {decoder(encoded_pass)}.\n")
+
+        else:
+            break
+
+
+if __name__ == '__main__':
+    main()
+
